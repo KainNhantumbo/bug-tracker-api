@@ -7,7 +7,5 @@ config()
 const app: Application = express();
 const PORT = process.env.PORT || 6700
 
-
-
 // starts the server
 bootstrap(PORT, process.env.MONGO_URI || '')
