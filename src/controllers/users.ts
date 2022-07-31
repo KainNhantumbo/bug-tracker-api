@@ -1,5 +1,4 @@
 import UserModel from '../models/User';
-import BaseError from '../error/base-error';
 import { ControllerResponse } from '../types/functions';
 import { Request, Response } from 'express';
 
