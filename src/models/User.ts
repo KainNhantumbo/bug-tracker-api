@@ -7,6 +7,7 @@ interface IUser {
 	user_name: string;
 	email: string;
 	password: string;
+	recouvery_key: string;
 }
 
 const UserSchema = new Schema<IUser>(
@@ -38,12 +39,16 @@ const UserSchema = new Schema<IUser>(
 				'Please provide a valid e-mail adress.',
 			],
 			unique: true,
-			maxlength: [64, 'Provided e-mail adress is too long.']
+			maxlength: [64, 'Provided e-mail adress is too long.'],
 		},
 		password: {
 			type: String,
 			minlength: [6, 'The password must have at least 6 charaters.'],
 			required: [true, 'Please provide a password.'],
+		},
+		recouvery_key: {
+			type: String,
+			required: [true, 'Please provide a user account recouvery key.'],
 		},
 	},
 	{ timestamps: true }
@@ -55,6 +60,7 @@ UserSchema.pre('save', async function () {
 	try {
 		const salt = await bcrypt.genSalt(10);
 		this.password = await bcrypt.hash(this.password, salt);
+		this.recouvery_key = await bcrypt.hash(this.recouvery_key, salt);
 	} catch (err) {
 		console.log(err);
 	}

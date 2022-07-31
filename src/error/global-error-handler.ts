@@ -5,7 +5,7 @@ import handleBaseError from './base-error-handler';
 
 /**
  * Error handler middleware.
- * @param error error
+ * @param error error object
  * @param req request
  * @param res response
  * @param next next middleware Function

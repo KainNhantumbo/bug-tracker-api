@@ -8,7 +8,8 @@ interface IBug {
 	author: string;
 	status: string;
 	associated: string;
-	comment: string;
+	notes: string;
+	createdBy: string;
 }
 
 const BugSchema = new Schema<IBug>(
@@ -58,12 +59,16 @@ const BugSchema = new Schema<IBug>(
 			required: false,
 			default: '',
 		},
-		comment: {
+		notes: {
 			type: String,
-			maxlength: [1536, 'Author field must not be over 1536 characters.'],
+			maxlength: [1536, 'Notes field must not be over 1536 characters.'],
 			trim: false,
 			required: false,
-			default: 'Unsigned.',
+			default: '',
+		},
+		createdBy: {
+			type: String,
+			required: [true, 'Please provide a user ID.'],
 		},
 	},
 	{ timestamps: true }
