@@ -1,11 +1,12 @@
-import express from 'express';
-import { Application } from 'express';
-import { config } from 'dotenv';
+import express, { Application } from 'express';
 import bootstrap from './server/server';
+import { config } from 'dotenv';
+import globalErrorHandler from './error/global-error-handler';
 
-config()
+config();
+const PORT = process.env.PORT || 6700;
 const app: Application = express();
-const PORT = process.env.PORT || 6700
+app.use(globalErrorHandler)
 
 // starts the server
-bootstrap(PORT, process.env.MONGO_URI || '')
+bootstrap(PORT, process.env.MONGO_URI || '');
