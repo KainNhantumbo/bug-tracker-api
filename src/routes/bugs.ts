@@ -8,7 +8,7 @@ import {
 	updateBug,
 } from '../controllers/bugs';
 
-const router = Router();
+const router: Router = Router();
 
 router.route('/').get(asyncWrapper(getAllBugs)).post(asyncWrapper(createBug));
 
