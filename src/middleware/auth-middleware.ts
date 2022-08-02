@@ -10,7 +10,11 @@ import { config } from 'dotenv';
 // loads environment variables
 config();
 
-async function auth(req: IReq, res: IRes, next: nextFn): Promise<void> {
+async function authenticator(
+	req: IReq,
+	res: IRes,
+	next: nextFn
+): Promise<void> {
 	const authHeader = req.headers.authorization;
 	if (!authHeader || !authHeader.startsWith('Bearer '))
 		throw new BaseError('Unauthorized: invalid token.', 401);
@@ -21,4 +25,4 @@ async function auth(req: IReq, res: IRes, next: nextFn): Promise<void> {
 	next();
 }
 
-export default auth;
+export default authenticator;
