@@ -22,11 +22,14 @@ export default async function login(req: IReq, res: IRes): ControllerResponse {
 		);
 
 	const match = await bcrypt.compare(password, user[0].password);
+
 	if (!match)
 		throw new BaseError('Wrong password. Please check and try again.', 401);
 
+	const user_id: any = user[0]._id;
+
 	const token = await createToken(
-		user[0]._id as any,
+		user_id,
 		process.env.ACCESS_TOKEN || '',
 		'1d'
 	);
