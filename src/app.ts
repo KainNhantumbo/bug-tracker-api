@@ -9,10 +9,11 @@ import { config } from 'dotenv';
 import { authRoutes } from './routes/auth';
 import { userRoutes } from './routes/users';
 import { bugRoutes } from './routes/bugs';
+import { error404Route } from './routes/404';
 
 // server config
 config();
-const PORT = process.env.PORT || 6700;
+const PORT = Number(process.env.PORT) || 4500;
 const app: Application = express();
 const cors_options: CorsOptions = { origin: 'http://localhost:3000' };
 const limiter = rateLimit({
@@ -36,6 +37,7 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/bugs', bugRoutes);
 
 // error handling
+app.use(error404Route);
 app.use(globalErrorHandler);
 
 // starts the server
