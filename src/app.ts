@@ -8,7 +8,7 @@ config();
 const PORT = process.env.PORT || 6700;
 const app: Application = express();
 
-app.use('/api/v1', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 app.use(globalErrorHandler);
 

@@ -1,24 +1,20 @@
 import jwt from 'jsonwebtoken';
 
-interface PayloadProps {
-	name: string;
-	reference: string;
-}
-
 /**
- * @param payload Object that must contain user reference and name
- * @returns token
+ * @param user_id user id string
+ * @param secret jwt secret key
+ * @param exp time to token expire
+ * @returns Promise<unknown>
  */
-const createToken = async (payload: PayloadProps) =>
+const createToken = async (
+	user_id: string,
+	secret: string,
+	exp: string
+): Promise<unknown> =>
 	new Promise((resolve) => {
-		const secret = process.env.JWT_SECRET || '';
-		const token = jwt.sign(
-			{ ref: payload.reference, name: payload.name },
-			secret,
-			{
-				expiresIn: process.env.JWT_EXPDATE,
-			}
-		);
+		const token = jwt.sign({ user_id }, secret, {
+			expiresIn: exp,
+		});
 		resolve(token);
 	});
 
@@ -28,7 +24,7 @@ const createToken = async (payload: PayloadProps) =>
  * @param secret string
  * @returns Promise<unknown>
  */
-const verifyToken = (token: string, secret: string) =>
+const verifyToken = (token: string, secret: string): Promise<unknown> =>
 	new Promise((resolve) => {
 		const result = jwt.verify(token, secret);
 		resolve(result);
