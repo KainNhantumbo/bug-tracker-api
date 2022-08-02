@@ -5,13 +5,17 @@ import { Request, Response } from 'express';
 import { ControllerResponse } from '../types/functions';
 
 const createUser = async (req: Request, res: Response): ControllerResponse => {
-	const { password } = req.body;
+	const { password, ...data } = req.body;
 	let pass: string = String(password);
 	if (pass.length < 6)
 		throw new BaseError('Your password must have at least 6 characteres.', 400);
-	req.body.recouvery_key = uuidV4();
-	const user = await UserModel.create({ ...req.body });
-	res.status(201).json({ user_key: req.body.recouvery_key, user_id: user._id });
+	const user_key: string = uuidV4();
+	await UserModel.create({
+		recouvery_key: user_key,
+		password: pass,
+		...data,
+	});
+	res.status(201).json({ user_recouvery: user_key });
 };
 
 export default createUser;

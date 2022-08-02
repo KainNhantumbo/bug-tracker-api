@@ -75,3 +75,5 @@ const BugSchema = new Schema<IBug>(
 );
 
 const BugModel = model('Bug', BugSchema);
+
+export default BugModel;

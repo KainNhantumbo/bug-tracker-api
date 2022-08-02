@@ -16,8 +16,8 @@ async function auth(req: IReq, res: IRes, next: nextFn): Promise<void> {
 		throw new BaseError('Unauthorized: invalid token.', 401);
 	const token = authHeader.split(' ')[1];
 	const payload: any = await verifyToken(token, process.env.ACCESS_TOKEN || '');
-	// inserts user id and user name into request middleware
-	(req as any).user.user_id = payload.user_id;
+	// inserts user id into request middleware
+	req.body.user = payload.user_id;
 	next();
 }
 

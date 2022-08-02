@@ -30,6 +30,5 @@ export default async function login(req: IReq, res: IRes): ControllerResponse {
 		process.env.ACCESS_TOKEN || '',
 		'1d'
 	);
-
 	res.status(200).json({ token, username: user[0].user_name });
 }
