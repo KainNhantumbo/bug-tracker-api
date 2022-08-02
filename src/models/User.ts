@@ -7,7 +7,7 @@ interface IUser {
 	user_name: string;
 	email: string;
 	password: string;
-	recouvery_key: string;
+	recovery_key: string;
 }
 
 const UserSchema = new Schema<IUser>(
@@ -46,9 +46,9 @@ const UserSchema = new Schema<IUser>(
 			minlength: [6, 'The password must have at least 6 charaters.'],
 			required: [true, 'Please provide a password.'],
 		},
-		recouvery_key: {
+		recovery_key: {
 			type: String,
-			required: [true, 'Please provide a user account recouvery key.'],
+			required: [true, 'Please provide a user account recovery key.'],
 		},
 	},
 	{ timestamps: true }
@@ -60,7 +60,7 @@ UserSchema.pre('save', async function () {
 	try {
 		const salt = await bcrypt.genSalt(10);
 		this.password = await bcrypt.hash(this.password, salt);
-		this.recouvery_key = await bcrypt.hash(this.recouvery_key, salt);
+		this.recovery_key = await bcrypt.hash(this.recovery_key, salt);
 	} catch (err) {
 		console.log(err);
 	}

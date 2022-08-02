@@ -5,8 +5,8 @@ import { ControllerResponse } from '../types/functions';
 import bcrypt from 'bcrypt';
 
 // used to recouver account when user forgot password
-const recouverAccount = async (req: IReq, res: IRes): ControllerResponse => {
-	const { user_email, recouvery_key, password } = req.body;
+const recoverAccount = async (req: IReq, res: IRes): ControllerResponse => {
+	const { user_email, recovery_key, password } = req.body;
 	if (!password || !user_email)
 		throw new BaseError('Please provide your email and password.', 400);
 
@@ -17,10 +17,10 @@ const recouverAccount = async (req: IReq, res: IRes): ControllerResponse => {
 			400
 		);
 
-	if (!recouvery_key)
-		throw new BaseError('Please provide your account recouvery key.', 400);
+	if (!recovery_key)
+		throw new BaseError('Please provide your account recovery key.', 400);
 
-	const match = await bcrypt.compare(recouvery_key, user_data[0].recouvery_key);
+	const match = await bcrypt.compare(recovery_key, user_data[0].recovery_key);
 	if (!match)
 		throw new BaseError(
 			'Invalid account recouvery key. Please check and try again.',
@@ -40,4 +40,4 @@ const recouverAccount = async (req: IReq, res: IRes): ControllerResponse => {
 	res.status(200).json({ message: 'Account password updated successfuly.' });
 };
 
-export default recouverAccount;
+export default recoverAccount;

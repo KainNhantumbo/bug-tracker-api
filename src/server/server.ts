@@ -1,9 +1,11 @@
-import express, { Application } from 'express';
+import { Application } from 'express';
 import db from '../db/connection';
 
-const app: Application = express();
-
-const bootstrap = async (port: string | number, db_uri: string) => {
+const bootstrap = async (
+	port: string | number,
+	db_uri: string,
+	app: Application
+) => {
 	try {
 		await db(db_uri);
 		app.listen(port, () => {

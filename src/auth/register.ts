@@ -8,8 +8,13 @@ const createUser = async (req: Request, res: Response): ControllerResponse => {
 	const { password, ...data } = req.body;
 	const pwd: string = String(password);
 	if (pwd.length < 6)
-		throw new BaseError('Your password must have at least 6 characteres.', 400);
-	const user_key: string = uuidV4();
+		throw new BaseError('Password must have at least 6 characters.', 400);
+	const user_key: string = uuidV4()
+		.toUpperCase()
+		.split('-')
+		.join('')
+		.slice(0, 21);
+
 	await UserModel.create({
 		recouvery_key: user_key,
 		password: pwd,

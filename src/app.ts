@@ -13,9 +13,15 @@ import { error404Route } from './routes/404';
 
 // server config
 config();
-const PORT = Number(process.env.PORT) || 4500;
+const PORT = process.env.PORT || 8500;
 const app: Application = express();
-const cors_options: CorsOptions = { origin: 'http://localhost:3000' };
+
+const cors_options: CorsOptions = {
+	origin: 'http://localhost:3000',
+	methods: ['GET', 'POST', 'DELETE', 'PATCH'],
+	optionsSuccessStatus: 200,
+};
+
 const limiter = rateLimit({
 	windowMs: 10 * 60 * 1000,
 	max: 1200,
@@ -41,4 +47,4 @@ app.use(error404Route);
 app.use(globalErrorHandler);
 
 // starts the server
-bootstrap(PORT, process.env.MONGO_URI || '');
+bootstrap(PORT, process.env.MONGO_URI || '', app);

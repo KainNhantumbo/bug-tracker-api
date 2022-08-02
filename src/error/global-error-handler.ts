@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { JsonWebTokenError } from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import BaseError from './base-error';
 import handleBaseError from './base-error-handler';
 
@@ -11,7 +12,7 @@ import handleBaseError from './base-error-handler';
  * @param next next middleware Function
  */
 export default function globalErrorHandler(
-	error: any,
+	error: Error,
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -25,11 +26,22 @@ export default function globalErrorHandler(
 			message: 'Unauthorized: invalid token.',
 		});
 
+	if (error.name == 'MongoServerError') {
+		if(error.message.split(' ')[0] == 'E11000') {
+			return res.status(409).json({
+				status: 'Conflict Error',
+				code: 409,
+				message: 'This e-mail is already used by another account. Try another one.',
+			});
+		}
+	}
+
 	console.log(error); // for development only
 
 	res.status(500).json({
 		status: 'Internal Server Error',
 		code: 500,
+		error: error,
 		message: 'An error occured while processing your request.',
 	});
 }
