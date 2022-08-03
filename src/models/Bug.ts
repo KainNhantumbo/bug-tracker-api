@@ -43,8 +43,7 @@ const BugSchema = new Schema<IBug>(
 			type: String,
 			maxlength: [64, 'Author field must not be over 64 characters.'],
 			trim: true,
-			required: false,
-			default: 'Unsigned.',
+			required: true,
 		},
 		status: {
 			type: String,

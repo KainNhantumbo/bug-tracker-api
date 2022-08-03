@@ -28,6 +28,6 @@ const verifyToken = (token: string, secret: string): Promise<unknown> =>
 	new Promise((resolve) => {
 		const result = jwt.verify(token, secret);
 		resolve(result);
-	});
+	})
 
 export { createToken, verifyToken };

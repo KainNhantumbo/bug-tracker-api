@@ -10,33 +10,36 @@ const recoverAccount = async (req: IReq, res: IRes): ControllerResponse => {
 	if (!password || !user_email)
 		throw new BaseError('Please provide your email and password.', 400);
 
-	const user_data = await UserModel.find({ email: user_email });
+	const user_data = await UserModel.findOne({ email: user_email });
+
 	if (!user_data)
 		throw new BaseError(
-			'User with provided provided email is not found. Please check and try again.',
-			400
+			'User with provided provided e-mail adress not found. Please check and try again.',
+			404
 		);
 
 	if (!recovery_key)
 		throw new BaseError('Please provide your account recovery key.', 400);
 
-	const match = await bcrypt.compare(recovery_key, user_data[0].recovery_key);
+	const match = await bcrypt.compare(recovery_key, user_data.recovery_key);
 	if (!match)
 		throw new BaseError(
-			'Invalid account recouvery key. Please check and try again.',
+			'Invalid account recovery key. Please check and try again.',
 			400
 		);
 
-	const pwd: string = String(password);
+	let pwd: string = String(password);
 	if (pwd.length < 6)
 		throw new BaseError('Your password must have at least 6 characteres.', 400);
+	// password hashing
+	const salt = await bcrypt.genSalt(10);
+	pwd = await bcrypt.hash(pwd, salt);
 
 	await UserModel.updateOne(
-		{ _id: user_data[0]._id },
+		{ _id: user_data._id },
 		{ password: pwd },
 		{ runValidators: true }
 	);
-
 	res.status(200).json({ message: 'Account password updated successfuly.' });
 };
 

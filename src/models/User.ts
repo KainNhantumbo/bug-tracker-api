@@ -54,17 +54,5 @@ const UserSchema = new Schema<IUser>(
 	{ timestamps: true }
 );
 
-// before saving a user, bcrypt hashes the password
-// that is in the schema
-UserSchema.pre('save', async function () {
-	try {
-		const salt = await bcrypt.genSalt(10);
-		this.password = await bcrypt.hash(this.password, salt);
-		this.recovery_key = await bcrypt.hash(this.recovery_key, salt);
-	} catch (err) {
-		console.log(err);
-	}
-});
-
 const UserModel = model('User', UserSchema);
 export default UserModel;

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { JsonWebTokenError } from 'jsonwebtoken';
+import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import BaseError from './base-error';
 import handleBaseError from './base-error-handler';
@@ -26,12 +26,20 @@ export default function globalErrorHandler(
 			message: 'Unauthorized: invalid token.',
 		});
 
+	if (error instanceof TokenExpiredError)
+		return res.status(403).json({
+			status: 'Token Expired Error',
+			code: 403,
+			message: 'Unauthorized: expired token.',
+		});
+
 	if (error.name == 'MongoServerError') {
-		if(error.message.split(' ')[0] == 'E11000') {
+		if (error.message.split(' ')[0] == 'E11000') {
 			return res.status(409).json({
 				status: 'Conflict Error',
 				code: 409,
-				message: 'This e-mail is already used by another account. Try another one.',
+				message:
+					'This e-mail is already used by another account. Try another one.',
 			});
 		}
 	}
