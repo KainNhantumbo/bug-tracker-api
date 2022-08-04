@@ -21,7 +21,6 @@ const authenticator = asyncWrapper(
 			token,
 			process.env.ACCESS_TOKEN || ''
 		);
-
 		if (!payload) throw new BaseError('Invalid token.', 401);
 		// inserts user id into request middleware
 		req.body.user = payload.user_id;

@@ -22,8 +22,6 @@ export default async function login(req: IReq, res: IRes): ControllerResponse {
 		);
 
 	const match = await bcrypt.compare(password, user.password);
-console.log(user);
-
 	if (!match)
 		throw new BaseError('Wrong password. Please check and try again.', 401);
 
