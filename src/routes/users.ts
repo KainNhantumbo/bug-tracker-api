@@ -8,7 +8,7 @@ router
 	.route('/')
 	.get(asyncWrapper(getSingleUser))
 	.patch(asyncWrapper(updateUser));
-  
+
 router.route('/:id').delete(asyncWrapper(deleteUser));
 
 export { router as userRoutes };

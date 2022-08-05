@@ -6,7 +6,6 @@ import { ControllerResponse } from '../types/functions';
 import bcrypt from 'bcrypt';
 
 const createUser = async (req: Request, res: Response): ControllerResponse => {
-	await UserModel.deleteMany({});
 	const { password, ...data } = req.body;
 
 	let pwd: string = String(password);

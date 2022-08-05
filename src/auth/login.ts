@@ -17,7 +17,7 @@ export default async function login(req: IReq, res: IRes): ControllerResponse {
 	const user = await UserModel.findOne({ email: email });
 	if (!user)
 		throw new BaseError(
-			'User with provided provided email is not found. Please check and try again.',
+			'Account not found. Please check your e-mail and try again.',
 			404
 		);
 

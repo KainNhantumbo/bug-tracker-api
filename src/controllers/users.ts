@@ -19,7 +19,7 @@ const getSingleUser = async (req: IReq, res: IRes): ControllerResponse => {
 };
 
 const deleteUser = async (req: IReq, res: IRes): ControllerResponse => {
-	const { user } = req.body;
+	const { id: user } = req.params;
 	await UserModel.deleteOne({ _id: user });
 	await BugModel.deleteMany({ createdBy: user });
 	res.status(200).json({ message: 'User deleted.' });

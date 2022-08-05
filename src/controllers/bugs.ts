@@ -11,7 +11,36 @@ const getSingleBug = async (req: IReq, res: IRes): ControllerResponse => {
 
 const getAllBugs = async (req: IReq, res: IRes): ControllerResponse => {
 	const { user } = req.body;
-	const bugs = await BugModel.find({ createdBy: user });
+	const { sort, search, fields, offset, limit } = req.query;
+	const queryObject: any = { createdBy: user };
+
+	if (search) {
+		queryObject.title = { $regex: search, $options: 'i' };
+		queryObject.author = { $regex: search, $options: 'i' };
+		queryObject.feature = { $regex: search, $options: 'i' };
+		queryObject.associated = { $regex: search, $options: 'i' };
+		queryObject.priority = { $regex: search, $options: 'i' };
+	}
+
+	let queryResult = BugModel.find(queryObject);
+
+	if (fields) {
+		let fieldsList = (fields as string).split(',').join(' ');
+		queryResult = queryResult.select(fieldsList);
+	}
+
+	if (sort) {
+		let sortPattern: string = sort.toString();
+		queryResult = queryResult.sort(sortPattern);
+	} else {
+		queryResult = queryResult.sort('title');
+	}
+
+	if (limit && offset) {
+		queryResult = queryResult.skip(Number(offset)).limit(Number(limit));
+	}
+
+	const bugs = await queryResult;
 	res.status(200).json({ bugs });
 };
 

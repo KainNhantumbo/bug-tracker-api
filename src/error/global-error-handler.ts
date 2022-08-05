@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
-import mongoose from 'mongoose';
 import BaseError from './base-error';
 import handleBaseError from './base-error-handler';
 
@@ -49,7 +48,6 @@ export default function globalErrorHandler(
 	res.status(500).json({
 		status: 'Internal Server Error',
 		code: 500,
-		error: error,
 		message: 'An error occured while processing your request.',
 	});
 }
