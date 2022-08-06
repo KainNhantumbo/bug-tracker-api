@@ -15,11 +15,13 @@ const getAllBugs = async (req: IReq, res: IRes): ControllerResponse => {
 	const queryObject: any = { createdBy: user };
 
 	if (search) {
-		queryObject.title = { $regex: search, $options: 'i' };
-		queryObject.author = { $regex: search, $options: 'i' };
-		queryObject.feature = { $regex: search, $options: 'i' };
-		queryObject.associated = { $regex: search, $options: 'i' };
-		queryObject.priority = { $regex: search, $options: 'i' };
+		queryObject['$or'] = [
+			{ title: { $regex: search, $options: 'i' } },
+			{ author: { $regex: search, $options: 'i' } },
+			{ priority: { $regex: search, $options: 'i' } },
+			{ feature: { $regex: search, $options: 'i' } },
+			{ status: { $regex: search, $options: 'i' } },
+		];
 	}
 
 	let queryResult = BugModel.find(queryObject);
