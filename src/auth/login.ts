@@ -1,5 +1,5 @@
+import * as bcrypt from 'bcrypt';
 import UserModel from '../models/User';
-import bcrypt from 'bcrypt';
 import { config } from 'dotenv';
 import { createToken } from '../utils/jwt-helpers';
 import { Request as IReq, Response as IRes } from 'express';

@@ -17,7 +17,13 @@ const PORT = process.env.PORT || 8500;
 const app: Application = express();
 
 const cors_options: CorsOptions = {
-	origin: 'http://localhost:3000',
+	origin: [
+		'http://localhost:3000',
+		'https://bug-tracker-5e7x8pq4e-kainnhantumbo.vercel.app',
+		'https://bug-tracker-pied.vercel.app',
+		'https://bug-tracker-kainnhantumbo.vercel.app',
+		'https://bug-tracker-git-master-kainnhantumbo.vercel.app/',
+	],
 	methods: ['GET', 'POST', 'DELETE', 'PATCH'],
 	optionsSuccessStatus: 200,
 };

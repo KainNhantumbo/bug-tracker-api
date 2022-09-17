@@ -2,7 +2,7 @@ import UserModel from '../models/User';
 import BugModel from '../models/Bug';
 import { ControllerResponse } from '../types/functions';
 import { Request as IReq, Response as IRes } from 'express';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import BaseError from '../error/base-error';
 
 const getAllUsers = async (req: IReq, res: IRes): ControllerResponse => {

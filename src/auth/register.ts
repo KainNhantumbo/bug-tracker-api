@@ -3,7 +3,7 @@ import BaseError from '../error/base-error';
 import UserModel from '../models/User';
 import { Request, Response } from 'express';
 import { ControllerResponse } from '../types/functions';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 const createUser = async (req: Request, res: Response): ControllerResponse => {
 	const { password, ...data } = req.body;

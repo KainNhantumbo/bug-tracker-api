@@ -2,7 +2,7 @@ import UserModel from '../models/User';
 import BaseError from '../error/base-error';
 import { Request as IReq, Response as IRes } from 'express';
 import { ControllerResponse } from '../types/functions';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 // used to recouver account when user forgot password
 const recoverAccount = async (req: IReq, res: IRes): ControllerResponse => {
