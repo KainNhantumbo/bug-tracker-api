@@ -1,7 +1,7 @@
 import {
-	Request as req,
-	Response as res,
-	NextFunction as nextFn,
+	Request as IReq,
+	Response as IRes,
+	NextFunction as INextFn,
 } from 'express';
 import { HandledFunction } from '../types/functions';
 
@@ -11,7 +11,7 @@ import { HandledFunction } from '../types/functions';
  * @returns Promise<...>
  */
 export default function asyncWrapper(fn: HandledFunction) {
-	return function (req: req, res: res, next: nextFn) {
+	return function (req: IReq, res: IRes, next: INextFn) {
 		return Promise.resolve(fn(req, res, next)).catch(next);
 	};
 }

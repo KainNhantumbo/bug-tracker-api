@@ -43,7 +43,7 @@ export default function globalErrorHandler(
 		}
 	}
 
-	console.log(error); // for development only
+	//console.log(error); // for development only
 
 	res.status(500).json({
 		status: 'Internal Server Error',

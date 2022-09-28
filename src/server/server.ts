@@ -12,7 +12,7 @@ const bootstrap = async (
 			console.log(`Server running on port ${port}`);
 		});
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 	}
 };
 

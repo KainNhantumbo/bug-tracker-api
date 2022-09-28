@@ -67,7 +67,7 @@ const updateBug = async (req: IReq, res: IRes): ControllerResponse => {
 		{ ...data },
 		{ runValidators: true }
 	);
-	res.status(200).json({ message: 'Updated successfully.' });
+	res.status(200).json({ message: 'Updated successfuly.' });
 };
 
 export { getSingleBug, getAllBugs, createBug, updateBug, deleteBug };

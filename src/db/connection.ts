@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 // makes a connection to database
-const db = (uri: string) => mongoose.connect(uri)
+const db = (uri: string) => mongoose.connect(uri);
 
-export default db
+export default db;

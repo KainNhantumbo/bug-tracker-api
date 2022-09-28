@@ -1,7 +1,7 @@
 import {
 	Request as IReq,
 	Response as IRes,
-	NextFunction as nextFn,
+	NextFunction as INextFn,
 } from 'express';
 import BaseError from '../error/base-error';
 import { verifyToken } from '../utils/jwt-helpers';
@@ -12,7 +12,7 @@ import asyncWrapper from '../middleware/async-wrapper';
 config();
 
 const authenticator = asyncWrapper(
-	async (req: IReq, res: IRes, next: nextFn): Promise<void> => {
+	async (req: IReq, res: IRes, next: INextFn): Promise<void> => {
 		const authHeader = req.headers.authorization;
 		if (!authHeader || !authHeader.startsWith('Bearer '))
 			throw new BaseError('Unauthorized: invalid token.', 401);
