@@ -1,6 +1,8 @@
-# Bug Tracker API (Node.JS + Typescript + Mongo DB)
+# Bug Tracker REST API (Node.JS + Typescript + Mongo DB)
 
-This web server application is built to serve its endpoints to Bug Tracker application ([see it here](https://github.com/KainNhantumbo/bug-tracker)), which is currently under development too.
+This REST API server application is built to serve its endpoints to Bug Tracker application ([see the source code here](https://github.com/KainNhantumbo/bug-tracker)), which is currently under development.
+
+**Access this app live at: [https://bug-tracker-pied.vercel.app](https://bug-tracker-pied.vercel.app)**
 
 ## Project status
 
@@ -8,8 +10,8 @@ This project still under development. Further details of its bulding, software a
 
 ### Current features
 
-- Handle fetch, save, update and delete bug reports on the database.
-- Handle user login, registration and authentication with jwt strategy.
+- Handle create, read, update and delete bug reports on the database.
+- Handle user login, registration and authentication with jwt (JSON web tokens) strategy.
 - Serve all data to a separated front-end application.
 
 ### Scripts for testing
@@ -39,13 +41,15 @@ Builds and starts the server in prodution.
 
 E-mail: [nhantumbok@gmail.com](nhantumbok@gmail.com 'Send an email')\
 Github: [https://github.com/KainNhantumbo](https://github.com/KainNhantumbo 'See my github profile')  
-Portifolio: [https://portifolio-dev-kainnhantumbo.vercel.app](https://portifolio-dev-kainnhantumbo.vercel.app 'See my github profile')
+Portfolio: [https://portifolio-dev-kainnhantumbo.vercel.app](https://portifolio-dev-kainnhantumbo.vercel.app 'See my portfolio website')\
+My Blog: [https://publish-it-programming.vercel.app](https://publish-it-programming.vercel.app 'Visit my blog')
 
-### If you like this project, please consider leaving a star on this repository.
+#### If you like this project, let me know by leaving a star on this repository so I can keep improving this app.😊😘
 
-### With kindest regards, Kain Nhantumbo from Mozambique.
+Best regards, Kain Nhantumbo, a web developer from Mozambique.\
+**Made with ❤ Node, Express and Typescript**
 
 ## License
 
-Licensed under APACHE LICENSE 2.0  
+Licensed under Apache 2.0 License. All rights reserved.\
 Copyright &copy; 2022 Kain Nhantumbo.
