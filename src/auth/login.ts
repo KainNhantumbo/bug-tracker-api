@@ -30,7 +30,17 @@ export default async function login(req: IReq, res: IRes): ControllerResponse {
 	const token = await createToken(
 		user_id,
 		process.env.ACCESS_TOKEN || '',
-		'1d'
+		'7d'
 	);
-	res.status(200).json({ token, username: user.user_name });
+
+	res
+		.status(202)
+		.cookie('AccessToken', token, {
+			httpOnly: true,
+			secure: false,
+			sameSite: 'strict',
+			expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+		})
+		.json({ username: user.user_name });
+	// res.status(200).json({ token, username: user.user_name });
 }
