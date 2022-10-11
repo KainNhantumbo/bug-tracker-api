@@ -39,10 +39,10 @@ Builds and starts the server in prodution.
 
 ## Contact
 
-E-mail: [nhantumbok@gmail.com](nhantumbok@gmail.com 'Send an email')\
+E-mail: [nhantumbok@gmail.com](nhantumbok@gmail.com 'Send an e-mail')\
 Github: [https://github.com/KainNhantumbo](https://github.com/KainNhantumbo 'See my github profile')  
 Portfolio: [https://portifolio-dev-kainnhantumbo.vercel.app](https://portifolio-dev-kainnhantumbo.vercel.app 'See my portfolio website')\
-My Blog: [https://publish-it-programming.vercel.app](https://publish-it-programming.vercel.app 'Visit my blog')
+My Blog: [https://publish-it-programming.vercel.app](https://publish-it-programming.vercel.app 'Visit my blog site')
 
 #### If you like this project, let me know by leaving a star on this repository so I can keep improving this app.😊😘
 
