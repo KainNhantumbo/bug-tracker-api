@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import BugModel from './Bug';
 
 interface IUser {
   first_name: string;
@@ -52,6 +53,16 @@ const UserSchema = new Schema<IUser>(
   },
   { timestamps: true }
 );
+
+UserSchema.post('remove', function (id, next) {
+  BugModel.deleteMany({ createdBy: id })
+    .then(function () {
+      next();
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 const UserModel = model('User', UserSchema);
 export default UserModel;

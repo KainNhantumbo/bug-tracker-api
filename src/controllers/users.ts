@@ -1,5 +1,4 @@
 import UserModel from '../models/User';
-import BugModel from '../models/Bug';
 import { ControllerResponse } from '../types/functions';
 import { Request as IReq, Response as IRes } from 'express';
 import * as bcrypt from 'bcrypt';
@@ -23,7 +22,6 @@ const getSingleUser = async (req: IReq, res: IRes): ControllerResponse => {
 const deleteUser = async (req: IReq, res: IRes): ControllerResponse => {
   const { id: user } = req.params;
   await UserModel.deleteOne({ _id: user }).lean();
-  await BugModel.deleteMany({ createdBy: user }).lean();
   res.status(200).json({ message: 'User deleted.' });
 };
 
