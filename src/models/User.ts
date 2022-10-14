@@ -54,6 +54,7 @@ const UserSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
+// on user deletion remove all notes for that user
 UserSchema.post('remove', function (id, next) {
   BugModel.deleteMany({ createdBy: id })
     .then(function () {

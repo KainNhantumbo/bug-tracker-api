@@ -1,13 +1,19 @@
 import { Router } from 'express';
-import login from '../auth/login';
-import createUser from '../auth/register';
+import {
+  login,
+  logout,
+  refresh,
+  accountRecovery,
+} from '../controllers/auth-controller';
+import { createUser } from '../controllers/users-controller';
 import asyncWrapper from '../middleware/async-wrapper';
-import recoverAccount from '../auth/recovery';
 
 const router: Router = Router();
 
 router.route('/login').post(asyncWrapper(login));
 router.route('/register').post(asyncWrapper(createUser));
-router.route('/recovery').post(asyncWrapper(recoverAccount));
+router.route('/recovery').post(asyncWrapper(accountRecovery));
+router.route('/refresh').post(asyncWrapper(refresh));
+router.route('/logout').post(logout);
 
 export { router as authRoutes };

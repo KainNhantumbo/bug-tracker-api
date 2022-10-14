@@ -6,7 +6,7 @@ import {
 	createBug,
 	deleteBug,
 	updateBug,
-} from '../controllers/bugs';
+} from '../controllers/bugs-controller';
 
 const router: Router = Router();
 

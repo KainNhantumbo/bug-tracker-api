@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getSingleUser, deleteUser, updateUser } from '../controllers/users';
+import { getSingleUser, deleteUser, updateUser } from '../controllers/users-controller';
 import asyncWrapper from '../middleware/async-wrapper';
 
 const router: Router = Router();
