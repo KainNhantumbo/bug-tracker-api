@@ -9,7 +9,7 @@ import { authRoutes } from './routes/auth';
 import { userRoutes } from './routes/users';
 import { bugRoutes } from './routes/bugs';
 import { error404Route } from './routes/404';
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
 import corsOptions from './config/cors-config';
 import rateLimiter from './config/rate-limiter';
 
@@ -22,15 +22,13 @@ app.use(cors(corsOptions));
 app.use(rateLimiter);
 app.use(helmet());
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // server open routes
 app.use('/api/v1/auth', authRoutes);
-
 // server protected routes
-app.use(authenticator);
-app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/bugs', bugRoutes);
+app.use('/api/v1/users', authenticator, userRoutes);
+app.use('/api/v1/bugs', authenticator, bugRoutes);
 
 // error handling
 app.use(error404Route);

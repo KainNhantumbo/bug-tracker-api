@@ -30,16 +30,16 @@ const login = async (req: IReq, res: IRes): ControllerResponse => {
   const accessToken = await createToken(
     user_id,
     process.env.ACCESS_TOKEN || '',
-    '20s'
+    '1m'
   );
   const refreshToken = await createToken(
     user_id,
     process.env.REFRESH_TOKEN || '',
-    '60s'
+    '2m'
   );
 
   res
-    .status(202)
+    .status(200)
     .cookie('token', refreshToken, {
       httpOnly: true,
       secure: PROD_ENV && true,
@@ -47,10 +47,9 @@ const login = async (req: IReq, res: IRes): ControllerResponse => {
       expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     })
     .json({ username: user.user_name, accessToken });
-  // res.status(200).json({ token, username: user.user_name });
 };
 
-// used to recouver account when user forgot password
+// used to recover account when user forgot password
 const accountRecovery = async (req: IReq, res: IRes): ControllerResponse => {
   const { user_email, recovery_key, password } = req.body;
   if (!password || !user_email)

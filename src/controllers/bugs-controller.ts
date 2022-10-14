@@ -55,7 +55,7 @@ const createBug = async (req: IReq, res: IRes): ControllerResponse => {
 const deleteBug = async (req: IReq, res: IRes): ControllerResponse => {
 	const { id } = req.params;
 	const { user } = req.body;
-	await BugModel.deleteOne({ _id: id, createdBy: user });
+	await BugModel.deleteOne({ _id: id, createdBy: user }).lean();
 	res.status(200).json({ message: 'Deleted successfuly.' });
 };
 
@@ -66,7 +66,7 @@ const updateBug = async (req: IReq, res: IRes): ControllerResponse => {
 		{ _id: id, createdBy: user },
 		{ ...data },
 		{ runValidators: true }
-	);
+	).lean();
 	res.status(200).json({ message: 'Updated successfuly.' });
 };
 

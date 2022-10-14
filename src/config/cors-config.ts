@@ -8,8 +8,9 @@ const corsOptions: CorsOptions = {
     'https://bug-tracker-kainnhantumbo.vercel.app',
     'https://bug-tracker-git-master-kainnhantumbo.vercel.app/',
   ],
-  methods: ['GET', 'POST', 'DELETE', 'PATCH'],
+  methods: ['GET', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
   optionsSuccessStatus: 200,
+  credentials: true,
 };
 
 export default corsOptions;
