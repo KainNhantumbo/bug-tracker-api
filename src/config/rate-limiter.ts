@@ -5,6 +5,7 @@ const rateLimiter = rateLimit({
   max: 1200,
   standardHeaders: true,
   legacyHeaders: false,
+  statusCode: 429,
 });
 
 export default rateLimiter;

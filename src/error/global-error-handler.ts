@@ -19,9 +19,9 @@ export default function globalErrorHandler(
   if (error instanceof BaseError) return handleBaseError(error, res);
 
   if (error instanceof JsonWebTokenError)
-    return res.status(403).json({
+    return res.status(401).json({
       status: 'Authorization Error',
-      code: 403,
+      code: 401,
       message: 'Unauthorized: invalid token.',
     });
 

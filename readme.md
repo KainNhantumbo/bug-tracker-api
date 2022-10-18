@@ -6,7 +6,7 @@ This REST API server application is built to serve its endpoints to Bug Tracker 
 
 ## Project status
 
-This project still under development. Further details of its bulding, software architecture and features will be given later.
+This project still under development. Further details of its bulding, software architecture and features will be given as the app grows.
 
 ### Current features
 
@@ -47,7 +47,7 @@ My Blog: [https://publish-it-programming.vercel.app](https://publish-it-programm
 #### If you like this project, let me know by leaving a star on this repository so I can keep improving this app.😊😘
 
 Best regards, Kain Nhantumbo, a web developer from Mozambique.\
-**Made with ❤ Node, Express and Typescript**
+**Made with ❤ Node.js, Express.js and Typescript**
 
 ## License
 

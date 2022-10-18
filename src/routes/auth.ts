@@ -13,7 +13,7 @@ const router: Router = Router();
 router.route('/login').post(asyncWrapper(login));
 router.route('/register').post(asyncWrapper(createUser));
 router.route('/recovery').post(asyncWrapper(accountRecovery));
-router.route('/refresh').post(asyncWrapper(refresh));
+router.route('/refresh').get(asyncWrapper(refresh));
 router.route('/logout').post(logout);
 
 export { router as authRoutes };

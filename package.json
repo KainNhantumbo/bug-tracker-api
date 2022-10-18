@@ -1,47 +1,47 @@
 {
-	"name": "bug-tracker-api",
-	"version": "1.0.0",
-	"description": "API to serve Bug Tracker application.",
-	"main": "app.js",
-	"scripts": {
-		"start": "node dist/app.js",
-		"build": "tsc && node dist/app.js",
-		"dev": "nodemon --exec ts-node src/app.ts",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"typecheck": "tsc",
-		"typecheck:watch": "tsc -w"
-	},
-	"author": {
-		"name": "Kain Nhantumbo",
-		"email": "nhantumbok@gmail.com",
-		"url": "https://portifolio-dev-mu.vercel.app"
-	},
-	"license": "Apache License Version 2.0",
-	"dependencies": {
-		"bcrypt": "^5.0.1",
-		"cookie-parser": "^1.4.6",
-		"cors": "^2.8.5",
-		"dotenv": "^16.0.1",
-		"express": "^4.18.1",
-		"express-rate-limit": "^6.4.0",
-		"helmet": "^5.1.0",
-		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^6.5.0",
-		"uuid": "^8.3.2"
-	},
-	"devDependencies": {
-		"@types/bcrypt": "^5.0.0",
-		"@types/cookie-parser": "^1.4.3",
-		"@types/cors": "^2.8.12",
-		"@types/dotenv": "^8.2.0",
-		"@types/express": "^4.17.13",
-		"@types/express-rate-limit": "^6.0.0",
-		"@types/helmet": "^4.0.0",
-		"@types/jsonwebtoken": "^8.5.8",
-		"@types/node": "^18.0.3",
-		"@types/uuid": "^8.3.4",
-		"nodemon": "^2.0.19",
-		"ts-node": "^10.8.2",
-		"typescript": "^4.7.4"
-	}
+  "name": "bug-tracker-api",
+  "version": "1.0.0",
+  "description": "API to serve Bug Tracker application.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "tsc && node dist/app.js",
+    "dev": "nodemon --exec ts-node src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc",
+    "typecheck:watch": "tsc -w"
+  },
+  "author": {
+    "name": "Kain Nhantumbo",
+    "email": "nhantumbok@gmail.com",
+    "url": "https://portifolio-dev-mu.vercel.app"
+  },
+  "license": "Apache License Version 2.0",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.4.0",
+    "helmet": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/express-rate-limit": "^6.0.0",
+    "@types/helmet": "^4.0.0",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^18.0.3",
+    "@types/uuid": "^8.3.4",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  }
 }

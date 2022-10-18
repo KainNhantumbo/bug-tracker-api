@@ -30,7 +30,7 @@ const login = async (req: IReq, res: IRes): ControllerResponse => {
   const accessToken = await createToken(
     user_id,
     process.env.ACCESS_TOKEN || '',
-    '1m'
+    '10s'
   );
   const refreshToken = await createToken(
     user_id,
@@ -43,10 +43,10 @@ const login = async (req: IReq, res: IRes): ControllerResponse => {
     .cookie('token', refreshToken, {
       httpOnly: true,
       secure: PROD_ENV && true,
-      sameSite: 'none',
-      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     })
-    .json({ username: user.user_name, accessToken });
+    res.json({ username: user.user_name, accessToken });
 };
 
 // used to recover account when user forgot password
@@ -91,13 +91,12 @@ const accountRecovery = async (req: IReq, res: IRes): ControllerResponse => {
 // refresh token function
 const refresh = async (req: IReq, res: IRes): Promise<void> => {
   const tokenCookie = req.cookies.token;
+  console.log(tokenCookie);
   if (!tokenCookie) throw new BaseError('Unauthorized: Invalid token.', 401);
   const decodedPayload: any = await verifyToken(
     tokenCookie,
     process.env.REFRESH_TOKEN || ''
   );
-
-  if (!decodedPayload) throw new BaseError('Forbidden.', 403);
   const user = await UserModel.findOne({ _id: decodedPayload.user_id });
   if (!user) throw new BaseError('Unauthorized: invalid token.', 401);
   const accessToken = await createToken(
