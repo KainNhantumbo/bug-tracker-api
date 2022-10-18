@@ -116,7 +116,7 @@ const logout = (
     .clearCookie('token', {
       httpOnly: true,
       secure: PROD_ENV && true,
-      sameSite: 'none',
+      sameSite: 'strict',
     })
     .json({ message: 'Cookie cleared.' });
 };
