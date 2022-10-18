@@ -30,23 +30,21 @@ const login = async (req: IReq, res: IRes): ControllerResponse => {
   const accessToken = await createToken(
     user_id,
     process.env.ACCESS_TOKEN || '',
-    '10s'
+    '12m'
   );
   const refreshToken = await createToken(
     user_id,
     process.env.REFRESH_TOKEN || '',
-    '2m'
+    '7d'
   );
 
-  res
-    .status(200)
-    .cookie('token', refreshToken, {
-      httpOnly: true,
-      secure: PROD_ENV && true,
-      sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    })
-    res.json({ username: user.user_name, accessToken });
+  res.status(200).cookie('token', refreshToken, {
+    httpOnly: true,
+    secure: PROD_ENV && true,
+    sameSite: 'strict',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+  res.json({ username: user.user_name, accessToken });
 };
 
 // used to recover account when user forgot password
@@ -91,7 +89,6 @@ const accountRecovery = async (req: IReq, res: IRes): ControllerResponse => {
 // refresh token function
 const refresh = async (req: IReq, res: IRes): Promise<void> => {
   const tokenCookie = req.cookies.token;
-  console.log(tokenCookie);
   if (!tokenCookie) throw new BaseError('Unauthorized: Invalid token.', 401);
   const decodedPayload: any = await verifyToken(
     tokenCookie,
@@ -102,7 +99,7 @@ const refresh = async (req: IReq, res: IRes): Promise<void> => {
   const accessToken = await createToken(
     user._id as unknown as string,
     process.env.ACCESS_TOKEN || '',
-    '20s'
+    '12m'
   );
   res.status(200).json({ accessToken });
 };

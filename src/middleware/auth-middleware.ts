@@ -6,13 +6,17 @@ import {
 import BaseError from '../error/base-error';
 import { verifyToken } from '../utils/jwt-helpers';
 import { config } from 'dotenv';
-import asyncWrapper from '../middleware/async-wrapper';
+import { TokenExpiredError } from 'jsonwebtoken';
 
 // loads environment variables
 config();
 
-const authenticator = asyncWrapper(
-  async (req: IReq, res: IRes, next: INextFn): Promise<void> => {
+const authenticator = async (
+  req: IReq,
+  res: IRes,
+  next: INextFn
+): Promise<IRes<any, Record<string, any>> | undefined> => {
+  try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer '))
       throw new BaseError('Unauthorized: invalid token.', 401);
@@ -21,10 +25,19 @@ const authenticator = asyncWrapper(
       token,
       process.env.ACCESS_TOKEN || ''
     );
-    if (!payload) throw new BaseError('Invalid token.', 401);
+    if (!payload) throw new BaseError('Error: Invalid token.', 403);
     // inserts user id into request middleware
     req.body.user = payload.user_id;
     next();
+  } catch (error) {
+    if (error instanceof TokenExpiredError)
+      return res.status(403).json({
+        status: 'Token Expired Error',
+        code: 403,
+        message: 'Unauthorized: expired token.',
+      });
+    next();
   }
-);
+};
+
 export default authenticator;

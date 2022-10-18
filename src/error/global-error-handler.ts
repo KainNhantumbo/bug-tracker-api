@@ -25,13 +25,6 @@ export default function globalErrorHandler(
       message: 'Unauthorized: invalid token.',
     });
 
-  if (error instanceof TokenExpiredError)
-    return res.status(403).json({
-      status: 'Token Expired Error',
-      code: 403,
-      message: 'Unauthorized: expired token.',
-    });
-
   if (error.name == 'MongoServerError') {
     if (error.message.split(' ')[0] == 'E11000') {
       return res.status(409).json({
@@ -42,8 +35,6 @@ export default function globalErrorHandler(
       });
     }
   }
-
-  //console.log(error); // for development only
 
   res.status(500).json({
     status: 'Internal Server Error',

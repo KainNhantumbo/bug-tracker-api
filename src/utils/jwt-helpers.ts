@@ -7,16 +7,16 @@ import * as jwt from 'jsonwebtoken';
  * @returns Promise<unknown>
  */
 const createToken = async (
-	user_id: string,
-	secret: string,
-	exp: string
+  user_id: string,
+  secret: string,
+  exp: string
 ): Promise<unknown> =>
-	new Promise((resolve) => {
-		const token = jwt.sign({ user_id }, secret, {
-			expiresIn: exp,
-		});
-		resolve(token);
-	});
+  new Promise((resolve) => {
+    const token = jwt.sign({ user_id }, secret, {
+      expiresIn: exp,
+    });
+    resolve(token);
+  });
 
 /**
  * An asynchronous function to verify integrity of the token.
@@ -25,9 +25,10 @@ const createToken = async (
  * @returns Promise<unknown>
  */
 const verifyToken = (token: string, secret: string): Promise<unknown> =>
-	new Promise((resolve) => {
-		const result = jwt.verify(token, secret);
-		resolve(result);
-	})
+  new Promise((resolve, reject) => {
+    const result = jwt.verify(token, secret);
+    if (!result) return reject(result);
+    resolve(result);
+  });
 
 export { createToken, verifyToken };
