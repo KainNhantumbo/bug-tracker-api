@@ -38,13 +38,15 @@ const login = async (req: IReq, res: IRes): ControllerResponse => {
     '7d'
   );
 
-  res.status(200).cookie('token', refreshToken, {
-    httpOnly: true,
-    secure: PROD_ENV && true,
-    sameSite: 'strict',
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
-  res.json({ username: user.user_name, accessToken });
+  res
+    .status(200)
+    .cookie('token', refreshToken, {
+      httpOnly: true,
+      secure: PROD_ENV && true,
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    })
+    .json({ username: user.user_name, accessToken });
 };
 
 // used to recover account when user forgot password
@@ -101,7 +103,7 @@ const refresh = async (req: IReq, res: IRes): Promise<void> => {
     process.env.ACCESS_TOKEN || '',
     '12m'
   );
-  res.status(200).json({ accessToken });
+  res.status(200).json({ username: user.user_name, accessToken });
 };
 
 // log out function

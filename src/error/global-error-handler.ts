@@ -36,6 +36,7 @@ export default function globalErrorHandler(
     }
   }
 
+  console.error('An uncaught error occured: ', error);
   res.status(500).json({
     status: 'Internal Server Error',
     code: 500,
