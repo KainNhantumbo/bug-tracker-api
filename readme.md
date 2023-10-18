@@ -41,8 +41,8 @@ Builds and starts the server in prodution.
 
 E-mail: [nhantumbok@gmail.com](nhantumbok@gmail.com 'Send an e-mail')\
 Github: [https://github.com/KainNhantumbo](https://github.com/KainNhantumbo 'See my github profile')  
-Portfolio: [https://portifolio-dev-kainnhantumbo.vercel.app](https://portifolio-dev-kainnhantumbo.vercel.app 'See my portfolio website')\
-My Blog: [https://publish-it-programming.vercel.app](https://publish-it-programming.vercel.app 'Visit my blog site')
+Portfolio: [https://codenut-dev.vercel.app](https://codenut-dev.vercel.app 'See my portfolio website')\
+My Blog: [https://codenut-dev.vercel.app/blog](https://codenut-dev.vercel.app/blog 'Visit my blog site')
 
 #### If you like this project, let me know by leaving a star on this repository so I can keep improving this app.😊😘
 
