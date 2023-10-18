@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import { JsonWebTokenError } from 'jsonwebtoken';
 import BaseError from './base-error';
 import handleBaseError from './base-error-handler';
 
@@ -26,7 +26,7 @@ export default function globalErrorHandler(
     });
 
   if (error.name == 'MongoServerError') {
-    if (error.message.split(' ')[0] == 'E11000') {
+    if (error.message.split(' ')[0] === 'E11000') {
       return res.status(409).json({
         status: 'Conflict Error',
         code: 409,
